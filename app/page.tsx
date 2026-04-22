@@ -62,7 +62,11 @@ export default function WikipediaClone() {
               const x = Math.cos((lang.angle * Math.PI) / 180) * 320;
               const y = Math.sin((lang.angle * Math.PI) / 180) * 200;
               return (
-                <div key={lang.name} className="lang-node-bend" style={{ "--x": `${x}px`, "--y": `${y}px`, "--text-align": lang.angle > 90 && lang.angle < 270 ? 'right' : 'left' } as any}>
+                <div 
+                    key={lang.name} 
+                    className="lang-node-bend" 
+                    style={{ "--x": `${x}px`, "--y": `${y}px`, "--text-align": lang.angle > 90 && lang.angle < 270 ? 'right' : 'left' } as any}
+                >
                   <div className="lang-name">{lang.name}</div>
                   <div className="lang-sub">{lang.sub}</div>
                 </div>
@@ -79,12 +83,11 @@ export default function WikipediaClone() {
                 </button>
                 <hr className="side-line" />
             </div>
-
             {showLangGrid && (
                 <div className="language-grid-dropdown">
-                <div className="grid-items">
-                    {gridLanguages.map(lang => <a key={lang} href="#">{lang}</a>)}
-                </div>
+                    <div className="grid-items">
+                        {gridLanguages.map(lang => <a key={lang} href="#">{lang}</a>)}
+                    </div>
                 </div>
             )}
         </div>
