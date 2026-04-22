@@ -48,45 +48,62 @@ body { margin: 0; background: #0d1117; color: white; font-family: sans-serif; ov
 body { margin: 0; background: #0d1117; color: white; font-family: sans-serif; overflow-x: hidden; }
 .page { display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 20px; }
 
-/* --- HEADER (Side-by-side on mobile) --- */
-.header { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 40px; }
-.globe-header-img { display: none; width: 45px; height: 45px; } /* Mobile only */
-.logo { font-family: serif; font-size: 56px; font-weight: 400; margin: 0; }
-.logo-mid { font-size: 40px; letter-spacing: 2px; }
-.tagline { font-size: 14px; letter-spacing: 2px; font-style: italic; text-align: center; }
+/* --- MOBILE LAYOUT (DEFAULT) --- */
+.header { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 20px; }
+.mobile-header-logo { display: block; width: 45px; height: 45px; }
+.logo { font-family: serif; font-size: 32px; font-weight: 400; margin: 0; }
+.logo-mid { font-size: 24px; }
+.tagline { font-size: 10px; margin-top: 0; font-style: italic; color: #8b949e; }
 
-/* --- DESKTOP ORBIT --- */
+.main-content { display: flex; flex-direction: column; width: 100%; }
+.search-area { order: 1; width: 100%; max-width: 440px; margin: 0 auto; }
+.orbit-container { order: 2; width: 100%; height: auto; margin-top: 20px; }
+.globe-img { display: none; } /* Hide big globe on mobile */
+
+.language-grid-wrapper {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr); /* 3 column format */
+  gap: 15px;
+  padding: 20px 10px;
+}
+/* This forces the 4-3-3 visual split you requested */
+.language-grid-wrapper > div:nth-child(n+8) { grid-column: span 1; } 
+
+.lang-node-bend { position: static !important; transform: none !important; text-align: center !important; width: auto !important; }
+.lang-name { color: #58a6ff; font-size: 14px; font-weight: 700; }
+.lang-sub { color: #8b949e; font-size: 10px; }
+
+.bottom-wrapper { order: 3; width: 100%; max-width: 440px; margin: 0 auto; }
+.footer-section { order: 4; margin-top: 40px; border-top: 1px solid #30363d; width: 100%; text-align: center; padding: 20px 0; }
+
+/* --- DESKTOP LAYOUT (LARGE SCREENS) --- */
 @media (min-width: 769px) {
-  .orbit-container { position: relative; width: 900px; height: 550px; display: flex; justify-content: center; align-items: center; }
-  .globe-main-img { width: 250px; height: 250px; z-index: 5; }
+  .page { padding: 40px 20px; }
+  .header { display: block; text-align: center; margin-bottom: 40px; }
+  .mobile-header-logo { display: none; }
+  .logo { font-size: 72px; display: flex; justify-content: center; align-items: baseline; }
+  .logo-mid { font-size: 52px; }
+  .tagline { font-size: 16px; margin-top: -10px; }
+
+  .main-content { flex-direction: column; align-items: center; }
+  .search-area { order: 2; margin-top: 0; }
+  
+  .orbit-container { 
+    order: 1; /* Puts orbit ABOVE search on desktop to match your original design */
+    position: relative; width: 900px; height: 500px; 
+    display: flex; justify-content: center; align-items: center; 
+  }
+  .globe-img { display: block; width: 220px; height: 220px; z-index: 5; }
+
+  .language-grid-wrapper { display: block !important; }
   .lang-node-bend {
-    position: absolute; top: 50%; left: 50%; width: 180px;
-    transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y)));
-    text-align: var(--text-align);
+    position: absolute !absolute;
+    top: 50%; left: 50%; width: 180px;
+    transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) !important;
+    text-align: var(--align) !important;
   }
+  .lang-name { font-size: 18px; }
+  .lang-sub { font-size: 11px; }
+
+  .bottom-wrapper { order: 3; }
 }
-
-/* --- MOBILE GRID --- */
-@media (max-width: 768px) {
-  .globe-header-img { display: block; }
-  .globe-main-img { display: none; }
-  .logo { font-size: 32px; }
-  .logo-mid { font-size: 24px; }
-  .tagline { font-size: 10px; }
-
-  .language-wrapper {
-    display: grid !important; grid-template-columns: repeat(3, 1fr);
-    gap: 15px; width: 100%; margin-top: 20px;
-  }
-  .lang-node-bend { position: static !important; transform: none !important; text-align: center !important; width: auto !important; }
-}
-
-/* --- SEARCH & ACTIONS --- */
-.search-area { width: 100%; max-width: 440px; margin-bottom: 20px; }
-.search-bar { display: flex; border: 1px solid #30363d; height: 45px; }
-.search-bar input { flex: 1; background: transparent; border: none; color: white; padding: 0 10px; outline: none; }
-.search-button { background: #0969da; border: none; width: 50px; cursor: pointer; }
-.divider-wrapper { display: flex; align-items: center; gap: 10px; width: 100%; margin: 20px 0; }
-.side-line { flex: 1; border: none; border-top: 1px solid #30363d; }
-.read-more-btn { background: #161b22; border: 1px solid #30363d; color: #58a6ff; padding: 10px; font-weight: bold; cursor: pointer; }
-.footer-section { text-align: center; margin-top: auto; padding: 20px 0; font-size: 12px; color: #8b949e; }

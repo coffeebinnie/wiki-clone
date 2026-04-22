@@ -12,12 +12,15 @@ export default function WikipediaClone() {
     window.location.href = `https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(searchQuery)}&go=Go`;
   };
 
-  const languages = [
+  const leftSide = [
     { name: "中文", sub: "1,530,000+ 条目", angle: 140 },
     { name: "Deutsch", sub: "3,111,000+ Artikel", angle: 160 },
     { name: "Português", sub: "1,168,000+ artigos", angle: 185 },
     { name: "Italiano", sub: "1,964,000+ voci", angle: 210 },
     { name: "Français", sub: "2,750,000+ articles", angle: 230 },
+  ];
+
+  const rightSide = [
     { name: "日本語", sub: "1,497,000+ 記事", angle: 40 },
     { name: "Español", sub: "2,106,000+ artículos", angle: 15 },
     { name: "English", sub: "7,166,000+ articles", angle: 345 },
@@ -30,10 +33,11 @@ export default function WikipediaClone() {
   return (
     <div className="page" onClick={() => setShowEnMenu(false)}>
       <div className="header">
-        <img src="https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2@2x.png" alt="Globe" className="globe-header-img" />
+        {/* Mobile Logo: Beside the text */}
+        <img src="https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2@2x.png" alt="Logo" className="mobile-header-logo" />
         <div className="title-group">
-            <h1 className="logo">W<span className="logo-mid">IKIPEDI</span>A</h1>
-            <p className="tagline">The Free Encyclopedia</p>
+          <h1 className="logo">W<span className="logo-mid">IKIPEDI</span>A</h1>
+          <p className="tagline">The Free Encyclopedia</p>
         </div>
       </div>
 
@@ -56,26 +60,35 @@ export default function WikipediaClone() {
         </div>
 
         <div className="orbit-container">
-          <img src="https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2@2x.png" alt="Globe" className="globe-main-img" />
-          <div className="language-wrapper">
-            {languages.map((lang) => {
-              const x = Math.cos((lang.angle * Math.PI) / 180) * 320;
-              const y = Math.sin((lang.angle * Math.PI) / 180) * 200;
-              return (
+          {/* Desktop Globe: Center of the orbit */}
+          <img src="https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2@2x.png" alt="Globe" className="globe-img" />
+
+          <div className="language-grid-wrapper">
+            {[...leftSide, ...rightSide].map((lang) => {
+                const radiusX = 320;
+                const radiusY = 200;
+                const x = Math.cos((lang.angle * Math.PI) / 180) * radiusX;
+                const y = Math.sin((lang.angle * Math.PI) / 180) * radiusY;
+                
+                return (
                 <div 
                     key={lang.name} 
                     className="lang-node-bend" 
-                    style={{ "--x": `${x}px`, "--y": `${y}px`, "--text-align": lang.angle > 90 && lang.angle < 270 ? 'right' : 'left' } as any}
+                    style={{ 
+                    "--x": `${x}px`, 
+                    "--y": `${y}px`,
+                    "--align": lang.angle > 90 && lang.angle < 270 ? 'right' : 'left'
+                    } as any}
                 >
-                  <div className="lang-name">{lang.name}</div>
-                  <div className="lang-sub">{lang.sub}</div>
+                    <div className="lang-name">{lang.name}</div>
+                    <div className="lang-sub">{lang.sub}</div>
                 </div>
-              );
+                );
             })}
           </div>
         </div>
 
-        <div className="bottom-actions">
+        <div className="bottom-wrapper">
             <div className="divider-wrapper">
                 <hr className="side-line" />
                 <button className="read-more-btn" onClick={() => setShowLangGrid(!showLangGrid)}>
@@ -83,11 +96,13 @@ export default function WikipediaClone() {
                 </button>
                 <hr className="side-line" />
             </div>
+
             {showLangGrid && (
                 <div className="language-grid-dropdown">
-                    <div className="grid-items">
-                        {gridLanguages.map(lang => <a key={lang} href="#">{lang}</a>)}
-                    </div>
+                <div className="grid-header">1,000,000+ articles</div>
+                <div className="grid-items">
+                    {gridLanguages.map(lang => <a key={lang} href="#">{lang}</a>)}
+                </div>
                 </div>
             )}
         </div>
