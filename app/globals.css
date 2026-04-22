@@ -44,33 +44,59 @@ body { margin: 0; background: #0d1117; color: white; font-family: sans-serif; ov
 .footer-section { width: 100%; max-width: 900px; padding: 30px 0; text-align: center; border-top: 1px solid #30363d; margin-top: 100px; }
 .footer-text { font-size: 12px; color: #8b949e; }
 .footer-text a { color: #58a6ff; text-decoration: none; }
-/* Responsive adjustments */
+/* Base desktop styles */
+.lang-node-bend {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y)));
+  text-align: var(--text-align);
+  width: 180px;
+}
+/* Mobile Responsive Fix */
 @media (max-width: 768px) {
   .orbit-container {
     width: 100%;
     height: auto;
     display: flex;
-    flex-direction: column; /* Stack languages vertically on mobile */
-    gap: 10px;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 20px;
   }
 
   .globe-img {
-    width: 120px; /* Smaller globe for mobile */
-    height: 120px;
-    order: -1; /* Puts globe at the top */
-    margin-bottom: 20px;
+    width: 100px;
+    height: 100px;
+    margin: 10px 0;
+  }
+
+  /* Change the language container to a 3-column grid on mobile */
+  .language-wrapper {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    width: 100%;
+    max-width: 440px;
+    padding: 20px 10px;
+    margin-top: 20px;
   }
 
   .lang-node-bend {
-    position: static !important; /* Remove the circular positioning */
+    position: static !important;
     transform: none !important;
-    width: 100%;
+    width: auto !important;
     text-align: center !important;
-    padding: 10px 0;
   }
 
+  .lang-name { font-size: 14px; }
+  .lang-sub { font-size: 10px; }
+
+  .main-content {
+    flex-direction: column;
+  }
+  
   .search-area {
-    max-width: 90%; /* Make search bar fit phone screens */
+    order: -1; /* Puts search bar above the grid */
+    width: 90%;
   }
 }

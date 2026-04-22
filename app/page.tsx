@@ -12,12 +12,10 @@ export default function WikipediaClone() {
     window.location.href = `https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(searchQuery)}&go=Go`;
   };
 
-  // Grouped into Left and Right arcs to ensure the center stays empty
-  // Angles are in degrees: 180 is left, 0/360 is right
   const leftSide = [
     { name: "中文", sub: "1,530,000+ 条目", angle: 140 },
     { name: "Deutsch", sub: "3,111,000+ Artikel", angle: 160 },
-    { name: "Português", sub: "1,168,000+ artigos", angle: 185 }, // Slightly lowered
+    { name: "Português", sub: "1,168,000+ artigos", angle: 185 },
     { name: "Italiano", sub: "1,964,000+ voci", angle: 210 },
     { name: "Français", sub: "2,750,000+ articles", angle: 230 },
   ];
@@ -26,7 +24,7 @@ export default function WikipediaClone() {
     { name: "日本語", sub: "1,497,000+ 記事", angle: 40 },
     { name: "Español", sub: "2,106,000+ artículos", angle: 15 },
     { name: "English", sub: "7,166,000+ articles", angle: 345 },
-    { name: "Polski", sub: "1,690,000+ haseł", angle: 325 }, // Moved to right side
+    { name: "Polski", sub: "1,690,000+ haseł", angle: 325 },
     { name: "Русский", sub: "2,094,000+ статей", angle: 300 },
   ];
 
@@ -41,30 +39,32 @@ export default function WikipediaClone() {
 
       <div className="main-content">
         <div className="orbit-container">
-          {/* The Globe in the center */}
           <img src="https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2@2x.png" alt="Globe" className="globe-img" />
 
-          {/* Render both sides using circular math */}
-          {[...leftSide, ...rightSide].map((lang) => {
-            const radiusX = 320; // Width of the "bend"
-            const radiusY = 200; // Height of the "bend"
-            const x = Math.cos((lang.angle * Math.PI) / 180) * radiusX;
-            const y = Math.sin((lang.angle * Math.PI) / 180) * radiusY;
-            
-            return (
-              <div 
-                key={lang.name} 
-                className="lang-node-bend" 
-                style={{ 
-                  transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
-                  textAlign: lang.angle > 90 && lang.angle < 270 ? 'right' : 'left'
-                }}
-              >
-                <div className="lang-name">{lang.name}</div>
-                <div className="lang-sub">{lang.sub}</div>
-              </div>
-            );
-          })}
+          {/* This wrapper allows us to switch to a grid on mobile */}
+          <div className="language-wrapper">
+            {[...leftSide, ...rightSide].map((lang) => {
+              const radiusX = 320; 
+              const radiusY = 200; 
+              const x = Math.cos((lang.angle * Math.PI) / 180) * radiusX;
+              const y = Math.sin((lang.angle * Math.PI) / 180) * radiusY;
+              
+              return (
+                <div 
+                  key={lang.name} 
+                  className="lang-node-bend" 
+                  style={{ 
+                    "--x": `${x}px`,
+                    "--y": `${y}px`,
+                    "--text-align": lang.angle > 90 && lang.angle < 270 ? 'right' : 'left'
+                  } as React.CSSProperties}
+                >
+                  <div className="lang-name">{lang.name}</div>
+                  <div className="lang-sub">{lang.sub}</div>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         <div className="search-area" onClick={(e) => e.stopPropagation()}>
