@@ -19,7 +19,8 @@ body { margin: 0; background: #0d1117; color: white; font-family: sans-serif; ov
   justify-content: center; 
   align-items: center; 
   margin-bottom: 40px;
-  pointer-events: none; /* CRITICAL: Allows clicks to pass through the invisible box */
+  pointer-events: none; /* Let clicks pass through to things behind it */
+  z-index: 1;
 }
 .globe-img { width: 220px; height: 220px; z-index: 5; pointer-events: auto; }
 
@@ -30,12 +31,13 @@ body { margin: 0; background: #0d1117; color: white; font-family: sans-serif; ov
   width: 180px; 
   cursor: pointer; 
   z-index: 10;
+  pointer-events: auto; /* Make sure languages stay clickable */
 }
 .lang-name { color: #58a6ff; font-size: 18px; font-weight: 700; line-height: 1.2; }
 .lang-sub { color: #8b949e; font-size: 11px; margin-top: 2px; }
 
 /* Search Area */
-.search-area { width: 100%; max-width: 440px; position: relative; z-index: 20; }
+.search-area { width: 100%; max-width: 440px; position: relative; z-index: 20; pointer-events: auto; }
 .search-bar { display: flex; border: 1px solid #30363d; height: 50px; background: #0d1117; }
 .search-bar input { flex: 1; background: transparent; border: none; color: white; padding: 0 15px; font-size: 18px; outline: none; }
 
@@ -56,10 +58,20 @@ body { margin: 0; background: #0d1117; color: white; font-family: sans-serif; ov
 .grid-items { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .grid-items a { color: #58a6ff; text-decoration: none; font-size: 13px; }
 
-/* Footer */
-.footer-section { width: 100%; max-width: 900px; padding: 30px 0; text-align: center; border-top: 1px solid #30363d; margin-top: 100px; }
+/* Footer - FIXED */
+.footer-section { 
+  width: 100%; 
+  max-width: 900px; 
+  padding: 30px 0; 
+  text-align: center; 
+  border-top: 1px solid #30363d; 
+  margin-top: 60px; 
+  position: relative; 
+  z-index: 30; /* Higher than the orbit container */
+  pointer-events: auto; /* Forces the links to work */
+}
 .footer-text { font-size: 12px; color: #8b949e; }
-.footer-text a { color: #58a6ff; text-decoration: none; }
+.footer-text a { color: #58a6ff; text-decoration: none; cursor: pointer; }
 
 @media (max-width: 768px) {
   .orbit-container {
