@@ -31,7 +31,7 @@ body { margin: 0; background: #0d1117; color: white; font-family: sans-serif; ov
   width: 180px; 
   cursor: pointer; 
   z-index: 10;
-  pointer-events: auto; /* Make sure languages stay clickable */
+  pointer-events: auto; 
 }
 .lang-name { color: #58a6ff; font-size: 18px; font-weight: 700; line-height: 1.2; }
 .lang-sub { color: #8b949e; font-size: 11px; margin-top: 2px; }
@@ -58,7 +58,7 @@ body { margin: 0; background: #0d1117; color: white; font-family: sans-serif; ov
 .grid-items { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .grid-items a { color: #58a6ff; text-decoration: none; font-size: 13px; }
 
-/* Footer - FIXED */
+/* Footer - FORCED TOP LAYER */
 .footer-section { 
   width: 100%; 
   max-width: 900px; 
@@ -67,11 +67,11 @@ body { margin: 0; background: #0d1117; color: white; font-family: sans-serif; ov
   border-top: 1px solid #30363d; 
   margin-top: 60px; 
   position: relative; 
-  z-index: 30; /* Higher than the orbit container */
-  pointer-events: auto; /* Forces the links to work */
+  z-index: 999; /* Higher than everything else */
+  pointer-events: auto !important; 
 }
 .footer-text { font-size: 12px; color: #8b949e; }
-.footer-text a { color: #58a6ff; text-decoration: none; cursor: pointer; }
+.footer-text a { color: #58a6ff; text-decoration: none; cursor: pointer; position: relative; z-index: 1000; }
 
 @media (max-width: 768px) {
   .orbit-container {

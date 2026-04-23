@@ -56,7 +56,7 @@ export default function WikipediaClone() {
                   transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
                   textAlign: lang.angle > 90 && lang.angle < 270 ? 'right' : 'left',
                   textDecoration: 'none',
-                  pointerEvents: 'auto' // CRITICAL: Makes the link clickable
+                  pointerEvents: 'auto'
                 }}
               >
                 <div className="lang-name">{lang.name}</div>
@@ -103,7 +103,9 @@ export default function WikipediaClone() {
 
       <div className="footer-section">
         <p className="footer-text">
-          This page is available under the <a href="#">Creative Commons Attribution-ShareAlike License</a> | <a href="#">Terms of Use</a> | <a href="#">Privacy Policy</a>
+          This page is available under the <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">Creative Commons Attribution-ShareAlike License</a> | 
+          <a href="https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use" target="_blank" rel="noopener noreferrer"> Terms of Use</a> | 
+          <a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank" rel="noopener noreferrer"> Privacy Policy</a>
         </p>
       </div>
     </div>
