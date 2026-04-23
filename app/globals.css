@@ -11,15 +11,31 @@ body { margin: 0; background: #0d1117; color: white; font-family: sans-serif; ov
 .main-content { flex: 1; display: flex; flex-direction: column; align-items: center; width: 100%; position: relative; }
 
 /* The Bendy Orbit */
-.orbit-container { position: relative; width: 900px; height: 500px; display: flex; justify-content: center; align-items: center; margin-bottom: 40px; }
-.globe-img { width: 220px; height: 220px; z-index: 5; }
+.orbit-container { 
+  position: relative; 
+  width: 900px; 
+  height: 500px; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  margin-bottom: 40px;
+  pointer-events: none; /* CRITICAL: Allows clicks to pass through the invisible box */
+}
+.globe-img { width: 220px; height: 220px; z-index: 5; pointer-events: auto; }
 
-.lang-node-bend { position: absolute; top: 50%; left: 50%; width: 180px; pointer-events: auto; cursor: pointer; }
+.lang-node-bend { 
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  width: 180px; 
+  cursor: pointer; 
+  z-index: 10;
+}
 .lang-name { color: #58a6ff; font-size: 18px; font-weight: 700; line-height: 1.2; }
 .lang-sub { color: #8b949e; font-size: 11px; margin-top: 2px; }
 
 /* Search Area */
-.search-area { width: 100%; max-width: 440px; position: relative; z-index: 10; }
+.search-area { width: 100%; max-width: 440px; position: relative; z-index: 20; }
 .search-bar { display: flex; border: 1px solid #30363d; height: 50px; background: #0d1117; }
 .search-bar input { flex: 1; background: transparent; border: none; color: white; padding: 0 15px; font-size: 18px; outline: none; }
 
@@ -45,12 +61,9 @@ body { margin: 0; background: #0d1117; color: white; font-family: sans-serif; ov
 .footer-text { font-size: 12px; color: #8b949e; }
 .footer-text a { color: #58a6ff; text-decoration: none; }
 
-/* MOBILE FIX: Prevent side-scrolling and overlapping. 
-   Does NOT change layout order or styles.
-*/
 @media (max-width: 768px) {
   .orbit-container {
-    transform: scale(0.6); /* Shrinks the orbit to fit the small screen */
+    transform: scale(0.6);
     margin-top: -100px;
     margin-bottom: -100px;
   }

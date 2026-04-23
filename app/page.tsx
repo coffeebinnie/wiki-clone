@@ -13,19 +13,19 @@ export default function WikipediaClone() {
   };
 
   const leftSide = [
-    { name: "中文", sub: "1,530,000+ 条目", angle: 140 },
-    { name: "Deutsch", sub: "3,111,000+ Artikel", angle: 160 },
-    { name: "Português", sub: "1,168,000+ artigos", angle: 185 }, 
-    { name: "Italiano", sub: "1,964,000+ voci", angle: 210 },
-    { name: "Français", sub: "2,750,000+ articles", angle: 230 },
+    { name: "中文", sub: "1,530,000+ 条目", angle: 140, code: "zh" },
+    { name: "Deutsch", sub: "3,111,000+ Artikel", angle: 160, code: "de" },
+    { name: "Português", sub: "1,168,000+ artigos", angle: 185, code: "pt" }, 
+    { name: "Italiano", sub: "1,964,000+ voci", angle: 210, code: "it" },
+    { name: "Français", sub: "2,750,000+ articles", angle: 230, code: "fr" },
   ];
 
   const rightSide = [
-    { name: "日本語", sub: "1,497,000+ 記事", angle: 40 },
-    { name: "Español", sub: "2,106,000+ artículos", angle: 15 },
-    { name: "English", sub: "7,166,000+ articles", angle: 345 },
-    { name: "Polski", sub: "1,690,000+ haseł", angle: 325 }, 
-    { name: "Русский", sub: "2,094,000+ статей", angle: 300 },
+    { name: "日本語", sub: "1,497,000+ 記事", angle: 40, code: "ja" },
+    { name: "Español", sub: "2,106,000+ artículos", angle: 15, code: "es" },
+    { name: "English", sub: "7,166,000+ articles", angle: 345, code: "en" },
+    { name: "Polski", sub: "1,690,000+ haseł", angle: 325, code: "pl" }, 
+    { name: "Русский", sub: "2,094,000+ статей", angle: 300, code: "ru" },
   ];
 
   const gridLanguages = ["Afrikaans", "Polski", "العربية", "Deutsch", "English", "Español", "Français", "Italiano", "日本語", "Русский", "中文", "Português"];
@@ -48,17 +48,20 @@ export default function WikipediaClone() {
             const y = Math.sin((lang.angle * Math.PI) / 180) * radiusY;
             
             return (
-              <div 
+              <a 
+                href={`https://${lang.code}.wikipedia.org/`}
                 key={lang.name} 
                 className="lang-node-bend" 
                 style={{ 
                   transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
-                  textAlign: lang.angle > 90 && lang.angle < 270 ? 'right' : 'left'
+                  textAlign: lang.angle > 90 && lang.angle < 270 ? 'right' : 'left',
+                  textDecoration: 'none',
+                  pointerEvents: 'auto' // CRITICAL: Makes the link clickable
                 }}
               >
                 <div className="lang-name">{lang.name}</div>
                 <div className="lang-sub">{lang.sub}</div>
-              </div>
+              </a>
             );
           })}
         </div>
