@@ -1,138 +1,154 @@
-/* Core Reset to stop "Wonkiness" */
+/* Official Branding Colors */
+:root {
+  --dodger-blue: #00b8ff;
+  --midnight: #001935;
+  --cornflower-blue: #529ecc;
+  --white: #ffffff;
+}
+
 html, body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  overflow-x: hidden; /* Stops horizontal shaking/scrolling */
-  background: #000000 url('https://i.pinimg.com/originals/81/d3/18/81d3183592f66453535973715d9a9307.gif'); 
+  overflow-x: hidden;
+  background-color: var(--midnight);
+  /* Using your reference image style (Dark overlay on paws) */
+  background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://i.ibb.co/3pD5T7Y/cat-paws.jpg'); 
   background-size: cover;
   background-position: center;
-  background-attachment: fixed; /* Keeps galaxy still while scrolling */
-  color: white;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: var(--white);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .page {
   display: flex;
   flex-direction: column;
-  align-items: center;
   min-height: 100vh;
-  width: 100%;
-  position: relative;
-  box-sizing: border-box;
 }
 
-/* Navbar - Made responsive */
+/* Navbar: Circular/Pill Search Bar */
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 10px 15px;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  box-sizing: border-box;
-  z-index: 10;
+  padding: 15px 20px;
+  gap: 10px;
+}
+
+.t-logo-small { 
+  font-family: "Bookman Old Style", serif; 
+  font-size: 35px; 
+  font-weight: bold;
+}
+
+.search-container {
+  position: relative;
+  flex: 0 1 450px;
+  display: flex;
+  align-items: center;
 }
 
 .search-box {
-  background: rgba(255, 255, 255, 0.15);
+  width: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 999px; /* This makes it circular/pill-shaped */
+  padding: 10px 10px 10px 45px;
+  color: white;
+  font-size: 15px;
+  outline: none;
+}
+
+.search-icon {
+  position: absolute;
+  left: 15px;
+  width: 18px;
+  height: 18px;
+  fill: rgba(255, 255, 255, 0.7);
+}
+
+.login-nav-btn {
+  margin-left: auto;
+  background: #00cf92;
+  color: var(--midnight);
+  border: none;
+  padding: 8px 18px;
   border-radius: 3px;
-  padding: 8px 12px;
-  flex: 1;
-  margin: 0 15px;
-  max-width: 300px;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 14px;
-  display: none; /* Hidden on tiny phones to save space */
+  font-weight: bold;
+  cursor: pointer;
 }
 
-@media (min-width: 600px) {
-  .search-box { display: block; }
-}
-
-/* Main Content Area */
+/* Main Container */
 .main-container {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  padding: 20px;
-  box-sizing: border-box;
+  padding: 40px 20px;
 }
 
-.tumblr-logo {
-  font-size: clamp(48px, 15vw, 80px); /* Scales perfectly between mobile and desktop */
-  font-weight: 900;
+.tumblr-logo-main {
+  font-family: "Bookman Old Style", serif;
+  font-size: 85px;
+  font-weight: bold;
+  letter-spacing: -4px;
   margin-bottom: 30px;
-  letter-spacing: -2px;
-  text-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
-.auth-form { 
-  width: 100%; 
-  max-width: 320px; 
-  display: flex;
-  flex-direction: column;
-}
+.auth-form { width: 100%; max-width: 320px; }
 
 .t-input {
   width: 100%;
   padding: 14px;
-  margin: 0;
+  margin-bottom: 10px;
   border: none;
+  border-radius: 4px;
   font-size: 16px;
-  box-sizing: border-box;
-}
-
-.t-input:first-child { border-radius: 4px 4px 0 0; }
-.t-input:nth-child(2) { 
-  border-radius: 0 0 4px 4px; 
-  border-top: 1px solid #e8e8e8; 
 }
 
 .signup-btn {
   width: 100%;
   padding: 14px;
-  margin-top: 15px;
-  background: #00b8ff;
+  background: var(--dodger-blue);
   color: white;
   border: none;
   border-radius: 4px;
-  font-size: 17px;
+  font-size: 18px;
   font-weight: bold;
   cursor: pointer;
 }
 
-.divider {
-  margin: 20px 0;
+/* The "OR" with lines */
+.divider-container {
   display: flex;
   align-items: center;
+  text-align: center;
+  margin: 20px 0;
   width: 100%;
-  color: rgba(255,255,255,0.6);
-  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+  font-size: 13px;
 }
-.divider::before, .divider::after {
-  content: "";
+
+.divider-container::before,
+.divider-container::after {
+  content: '';
   flex: 1;
-  height: 1px;
-  background: rgba(255,255,255,0.2);
-  margin: 0 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
 }
+
+.divider-container:not(:empty)::before { margin-right: .75em; }
+.divider-container:not(:empty)::after { margin-left: .75em; }
 
 .social-btn {
   width: 100%;
   padding: 12px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   border: none;
   border-radius: 4px;
-  background: white;
-  color: black;
+  background: var(--white);
+  color: var(--midnight);
   font-weight: bold;
-  font-size: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -140,14 +156,11 @@ html, body {
   cursor: pointer;
 }
 
-/* Footer - Simplified for mobile */
+/* Footer: Left Aligned */
 .footer {
-  width: 100%;
   padding: 20px;
   display: flex;
-  justify-content: center;
   gap: 15px;
-  font-size: 12px;
-  color: rgba(255,255,255,0.6);
-  box-sizing: border-box;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.8);
 }
