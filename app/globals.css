@@ -12,7 +12,7 @@ html, body {
   color: var(--white);
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   height: 100%;
-  overflow-x: hidden; /* Prevent horizontal scroll on mobile */
+  overflow-x: hidden; 
 }
 
 .page {
@@ -21,7 +21,6 @@ html, body {
   min-height: 100vh;
 }
 
-/* --- NAVBAR --- */
 .navbar {
   display: flex;
   align-items: center;
@@ -38,7 +37,6 @@ html, body {
   flex: 0 1 450px;
 }
 
-/* FONT FIX: Bookman Old Style */
 .t-logo-small, .tumblr-logo-main {
   font-family: "Bookman Old Style", "Bookman", serif !important;
 }
@@ -74,17 +72,16 @@ html, body {
   border-radius: 4px;
   font-weight: bold;
   cursor: pointer;
-  flex-shrink: 0; /* Keep Log In from disappearing */
+  flex-shrink: 0; 
 }
 
-/* --- MAIN FORM --- */
 .main-container {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 40px 20px; /* Added breathing room */
+  padding: 40px 20px; 
 }
 
 .tumblr-logo-main {
@@ -101,19 +98,18 @@ html, body {
   flex-direction: column;
 }
 
-/* BOXY PILL SHAPE */
 .t-input, .action-btn, .social-btn {
   width: 100%;
   height: 50px;
   margin-bottom: 12px;
   border: none;
-  border-radius: 6px !important; /* FIXED: Slightly boxy */
+  border-radius: 6px !important; 
   font-size: 16px;
   box-sizing: border-box;
 }
 
 .t-input {
-  text-align: center !important; /* FORCED CENTER */
+  text-align: center !important; 
   background: white;
   color: #333;
 }
@@ -135,7 +131,6 @@ html, body {
   content: ''; flex: 1; border-bottom: 1px solid rgba(255,255,255,0.2);
 }
 
-/* --- HOVER EFFECT FIXED --- */
 .social-btn {
   background: white;
   color: var(--midnight);
@@ -145,13 +140,13 @@ html, body {
   justify-content: center;
   gap: 10px;
   cursor: pointer;
-  transition: all 0.2s ease-in-out; /* Smooth transition back */
+  transition: all 0.2s ease-in-out; 
 }
 
 .social-btn:hover {
   background-color: #f0f0f0 !important;
   color: var(--cornflower-blue) !important;
-  transform: translateY(-2px); /* Slight lift */
+  transform: translateY(-2px); 
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
@@ -166,7 +161,6 @@ html, body {
   font-weight: bold;
 }
 
-/* --- FOOTER --- */
 .footer {
   padding: 20px;
   display: flex;
@@ -175,7 +169,6 @@ html, body {
   color: rgba(255,255,255,0.5);
 }
 
-/* --- THE ULTIMATE MEDIA QUERY FIX --- */
 @media (max-width: 768px) {
   .navbar {
     padding: 10px 15px;
